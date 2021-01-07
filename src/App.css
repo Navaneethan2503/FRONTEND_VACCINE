@@ -1,0 +1,33 @@
+.card {
+  height: 200px;
+}
+
+h1{
+   justify-content: center;
+   align-items: center;
+   color: #242669;
+   width: 50%;
+   margin-left: 25%;
+}
+
+  .list-group-item-primary {
+    height: 50px;
+   
+    display: flex;
+  }
+
+  header{
+    display: flex;
+  }
+
+  .card-body {
+   
+    display: flex;
+    font-size: xx-large;
+  }
+
+  .backgraph{
+    background: #E1F5FE;
+  }
+
+  

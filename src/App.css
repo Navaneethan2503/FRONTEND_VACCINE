@@ -1,33 +1,12 @@
-.card {
-  height: 200px;
+*{
+    font-family: 'Roboto', sans-serif;
 }
-
-h1{
-   justify-content: center;
-   align-items: center;
-   color: #242669;
-   width: 50%;
-   margin-left: 25%;
+body{
+    background: #f1f3f6;
 }
-
-  .list-group-item-primary {
-    height: 50px;
-   
+.flexRow{
     display: flex;
-  }
-
-  header{
-    display: flex;
-  }
-
-  .card-body {
-   
-    display: flex;
-    font-size: xx-large;
-  }
-
-  .backgraph{
-    background: #E1F5FE;
-  }
-
-  
+}
+.sb{
+    justify-content: space-between;
+}

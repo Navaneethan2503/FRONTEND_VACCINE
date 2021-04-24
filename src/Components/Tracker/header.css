@@ -1,0 +1,39 @@
+.card{
+	padding: 5px;
+	margin: 50px;
+	align-items: center;
+	text-transform: uppercase;
+	font-weight: 45px;
+	font-size: 20px;
+	color: #ffffff;
+}
+
+.part{
+	padding: 5px;
+}
+
+#graph{
+	margin: 5px;
+}
+
+.list-group .list-record{
+	padding: 5px;
+}
+ 
+.list-group{
+	width: 200px;
+	height: 100px;
+
+	padding: 10px;
+	margin: 35px;
+}
+
+h1 .country_header{
+	color:  #000080 ;
+  font-family: monospace;
+  font-size: 40px;
+}
+
+#card1{
+	background-color: #4dc3ff;
+}

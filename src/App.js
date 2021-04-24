@@ -1,57 +1,50 @@
-import React,{Component} from 'react';
-import './App.css';
-import Header from './Components/header';
-import Body from './Components/body';
-import {totalData} from './Components/Api/index';
-import HomePage from './Homepage';
-import Register from './Components/Register';
+import React, { useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomePage from "./containers/HomePage";
+import ProductListPage from "./containers/ProductListPage";
+import { useDispatch, useSelector } from "react-redux";
+import { isUserLoggedIn, updateCart } from "./actions";
+import ProductDetailsPage from "./containers/ProductDetailsPage";
+import CartPage from "./containers/CartPage";
+import CheckoutPage from "./containers/CheckoutPage";
+import OrderPage from "./containers/OrderPage";
+import OrderDetailsPage from "./containers/OrderDetailsPage";
 
-class App extends Component {
-  state = 
-    {
-    totalConfirmed : '',
-    totalDeath : '',
-    totalRecovered : ''
-  }
+function App() {
 
-  componentDidMount = async() => {
-    await totalData().then(res => {
-      this.setState({
-        totalConfirmed : res.data.TotalConfirmed,
-        totalDeath : res.data.TotalDeaths,
-        totalRecovered : res.data.TotalRecovered   
-      })
-    })
-    .catch(err => {
-      console.log("error = ", err);
-    })
-  }
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+  }, [auth.authenticate]);
 
-  render() {
+  useEffect(() => {
+    console.log("App.js - updateCart");
+    dispatch(updateCart());
+  }, [auth.authenticate]);
+
   return (
-
     <div className="App">
-     <HomePage />
-     <div className="headlines" >
-     <h1>GET IMMUNITY , STOP CORONITY</h1>
-     <h1>BY REGISTERING FOR VACCINE </h1>
-     </div>
-           <div>
-      <Header totalConfirmed={this.state.totalConfirmed} 
-              totalDeath={this.state.totalDeath} 
-              totalRecovered={this.state.totalRecovered}/>
-      </div>
-
-     
-      <div>
-
-        <Body />
-        <Register />
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/account/orders" component={OrderPage} />
+          <Route path="/order_details/:orderId" component={OrderDetailsPage} />
+          <Route
+            path="/:productSlug/:productId/p"
+            component={ProductDetailsPage}
+          />
+          <Route path="/:slug" component={ProductListPage} />
+        </Switch>
+      </Router>
     </div>
   );
-  }
 }
 
 export default App;
